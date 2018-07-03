@@ -11,13 +11,14 @@ class App extends Component {
     super()
     this.state={
       newItem: '',
-      items:[]
+      items:[],
+      itemId:''
     }
   }
   componentDidMount = () => {
     let origin
-    if(window.location.origin==='http://localhost:4000'){
-      origin = 'http://localhost:4001'
+    if(window.location.origin==='http://localhost:3000'){
+      origin = 'http://localhost:4000'
     }else{
       origin = 'https://cryptic-meadow-80214.herokuapp.com'
     }
@@ -36,8 +37,8 @@ class App extends Component {
     e.preventDefault()
     const data = this.state.newItem
     let origin
-    if(window.location.origin==='http://localhost:4000'){
-      origin = 'http://localhost:4001'
+    if(window.location.origin==='http://localhost:3000'){
+      origin = 'http://localhost:4000'
     }else{
       origin = 'https://cryptic-meadow-80214.herokuapp.com'
     }
@@ -65,6 +66,17 @@ class App extends Component {
     const value = e.target.value
     this.setState({newItem: value})
     console.log(this.state.newItem)
+  }
+  deleteItem=(e)=>{
+    e.preventDefault()
+    console.log(this.state.items.itemId)
+    axios.delete(`http://localhost:4000/items/${this.state.items.itemId}`)
+    .then(item => {
+      console.log('finished')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
   render() {
@@ -100,6 +112,7 @@ class App extends Component {
               path='/items/:id'
               render ={(routerParams)=>{
               return <ShowItem
+              deleteItem={this.deleteItem}
               items={this.state.items} 
               {...routerParams}
             />

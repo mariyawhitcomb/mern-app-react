@@ -30,7 +30,14 @@ a{
 .App-intro {
   font-size: large;
 }
-
+ul{
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+}
+li{
+  display: flex;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
