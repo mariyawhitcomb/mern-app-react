@@ -33,7 +33,7 @@ class App extends Component {
     if(window.location.origin==='http://localhost:4000'){
       origin = 'http://localhost:4001'
     }else{
-      origin = 'https://cryptic-meadow-80214.herokuapp.com/'
+      origin = 'https://cryptic-meadow-80214.herokuapp.com'
     }
     axios({
       method: 'post',
