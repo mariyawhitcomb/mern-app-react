@@ -14,50 +14,46 @@ class App extends Component {
       items:[],
       itemId:''
     }
-  }
-  componentDidMount = () => {
-    let origin
+  
+   
     if(window.location.origin==='http://localhost:3000'){
-      origin = 'http://localhost:4000'
+      this.origin = 'http://localhost:4000'
     }else{
-      origin = 'https://cryptic-meadow-80214.herokuapp.com'
+      this.origin = 'https://cryptic-meadow-80214.herokuapp.com'
     }
-    axios.get(`${origin}/items`)
+  }
+
+  componentDidMount = () => {
+    this.getItems()
+  }
+getItems=()=>{
+  axios.get(`${this.origin}/items`)
     .then(results=>{
       this.setState({items: results.data})
       console.log(results.data)
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log(err)
     })
-  }
-
+}
   
   addItem=(e)=>{
     e.preventDefault()
     const data = this.state.newItem
-    let origin
-    if(window.location.origin==='http://localhost:3000'){
-      origin = 'http://localhost:4000'
-    }else{
-      origin = 'https://cryptic-meadow-80214.herokuapp.com'
-    }
+    // let origin
+    // if(window.location.origin==='http://localhost:3000'){
+    //   origin = 'http://localhost:4000'
+    // }else{
+    //   origin = 'https://cryptic-meadow-80214.herokuapp.com'
+    // }
     axios({
       method: 'post',
-      url: `${origin}/items`,
+      url: `${this.origin}/items`,
       data: {
         data
       }
     })
    .then(()=>{
-      axios.get(`${origin}/items`)
-    .then(results=>{
-      this.setState({items: results.data})
-      console.log(results.data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    this.getItems()
     })
   }
   
@@ -70,9 +66,9 @@ class App extends Component {
   deleteItem=(e)=>{
     e.preventDefault()
     console.log(this.state.items.itemId)
-    axios.delete(`http://localhost:4000/items/${this.state.items.itemId}`)
-    .then(item => {
-      console.log('finished')
+    axios.delete(`${this.origin}/items/${this.state.items.itemId}`)
+    .then(() => {
+      this.getItems()
     })
     .catch((err) => {
       console.log(err)
