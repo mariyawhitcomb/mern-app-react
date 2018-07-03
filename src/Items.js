@@ -20,8 +20,9 @@ export default class Items extends Component {
     
       return (
           <div>
+              <ul>
               {this.props.items && this.items}
-              
+              </ul>
          </div>
         )
   }

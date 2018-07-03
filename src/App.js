@@ -15,7 +15,13 @@ class App extends Component {
     }
   }
   componentDidMount = () => {
-    axios.get('http://localhost:4000/items')
+    let origin
+    if(window.location.origin==='http://localhost:4000'){
+      origin = 'http://localhost:4001'
+    }else{
+      origin = 'https://cryptic-meadow-80214.herokuapp.com'
+    }
+    axios.get(`${origin}/items`)
     .then(results=>{
       this.setState({items: results.data})
       console.log(results.data)
