@@ -5,6 +5,7 @@ import NewItem from './NewItem'
 import Items from './Items';
 import ShowItem from './ShowItem';
 import axios from 'axios'
+import NewItemForm from './containers/NewItemForm';
 
 class App extends Component {
   constructor(){
@@ -84,7 +85,7 @@ getItems=()=>{
           <Link to='/'>Add new item</Link>
           </div>
         </header>
-        <Route
+        {/* <Route
           path='/'
           render ={(routerParams)=>{
             return <NewItem
@@ -93,7 +94,8 @@ getItems=()=>{
             {...routerParams}
           />
         }}       
-         />
+         /> */}
+         <NewItemForm/>
         <Route
                 path='/items'
                 exact
