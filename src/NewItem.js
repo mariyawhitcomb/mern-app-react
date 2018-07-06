@@ -2,26 +2,24 @@ import React, { Component } from 'react'
 import { createNewItem } from './actions/list';
 
 export default class NewItem extends Component {
-  constructor(){
-    super()
-    this.onClick=this.onClick.bind(this)
+  constructor(props){
+    super(props)
+    this.onSubmit=this.onSubmit.bind(this)
   }
-  onClick(e){
-    this.props.addItem(e)
+  onSubmit(e){
     e.preventDefault()
-    console.log(e.target)
-    // this.props.dispatch(createNewItem(e.target.value));
-    this.props.history.push(`/items`)
+    console.log(e.target[0].value)
+    this.props.dispatch(createNewItem(e.target[0].value));
+    e.target[0].value = "";
+
   }
   render() {
-    console.log(this.props)
     return (
       <div>
-        <form action="/items" method="POST">
+        <form onSubmit={this.onSubmit} action="/" method="POST">
           <input 
-          onChange={this.props.getValue}
            type="text" placeholder="Add new item..."/>
-          <input onClick={this.onClick} type="button" value="Add"/>
+          <button  type="submit">Add</button>
         </form>
       </div>
     )

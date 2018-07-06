@@ -9,13 +9,13 @@ export default function listReducer(state = DEFAULT_STATE, action) {
     case NEW_ITEM:
       return {
         ...state,
-        items: [...state.items, action.item]
+        items: [...state.items, action.items]
       };
     case REMOVE_ITEM:
       return {
         ...state,
         items: state.items.filter((item, id) => {
-          return id !== action.item;
+          return id !== action.items;
         })
     };
 
