@@ -4,8 +4,7 @@ export function createNewItem(name) {
   return {
     type: NEW_ITEM,
     items: {
-      name,
-      quantity: 1
+      name
     }
   }
 }

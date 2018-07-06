@@ -1,14 +1,13 @@
 import React from 'react'
 
-const ShowItem =({name='', quantity=1, onClick = () => {}})=>(
+const ShowItem =({name='', onClick = () => {}})=>(
   <div>
     <ul>
-        <li>
+        <li className='list'>
             {name}
-            {quantity}
-        <form onSubmit={onClick} action={'/'} method="DELETE">
-            <button  type="submit">Delete</button>
-        </form>
+            <form onSubmit={onClick} action={'/'} method="DELETE">
+                <button  type="submit">X</button>
+            </form>
         </li>
     </ul>
         

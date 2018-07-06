@@ -1,5 +1,10 @@
 import { NEW_ITEM, REMOVE_ITEM } from "../constants/list";
+import axios from 'axios'
 
+function getItems(){
+  axios.get()
+}
+getItems()
 const DEFAULT_STATE = {
   items: []
 }
